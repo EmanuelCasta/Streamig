@@ -1,0 +1,18 @@
+<div class="login-container">
+  <mat-card style="background-color: #222">
+    <mat-card-title style="color: aliceblue;">Iniciar sesión</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="login()" style="color: azure;">
+        <mat-form-field appearance="fill">
+          <mat-label style="color: antiquewhite;">Correo</mat-label>
+          <input matInput type="email" [ngModel]="email"  (ngModelChange)="email = $event" name="email" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label style="color: antiquewhite;">Contraseña</mat-label>
+          <input matInput type="password" [ngModel]="password"(ngModelChange)="password=$event" name="password" required>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" style="background-color: #e50914">Ingresar</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
