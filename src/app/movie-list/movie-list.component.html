@@ -2,36 +2,49 @@
 
     <div class="header">
         <h1 >Streaming</h1>
-        <button class="logout-button">Salir</button>
+        <button class="logout-button" (click)="logout()">Salir</button>
     </div>
     <div class="filter-form">
-      <form>
-        <input type="text" [(ngModel)]="filters.name" name="name" placeholder="Buscar por nombre...">
-        <select [(ngModel)]="filters.type" name="type">
-          <option value="">Todos los tipos</option>
-          <option value="MOVIE">Películas</option>
-          <option value="SERIES">Series</option>
-        </select>
-        <select [(ngModel)]="filters.genre" name="genre">
-          <option value="">Todos los géneros</option>
-          <option *ngFor="let genre of genres" [value]="genre.name">{{ genre.name }}</option>
-        </select>
-        <select [(ngModel)]="filters.score" name="score">
-          <option value="">Todas las calificaciones</option>
-          <option *ngFor="let score of [1, 2, 3, 4, 5]" [value]="score">{{ score }}</option>
-        </select>
-        <button type="button" (click)="applyFilters()">Aplicar filtros</button>
+      <form [formGroup]="formApplyFilters" (ngSubmit)="applyFilters()">
+        <input type="text" formControlName="name" name="name" placeholder="Buscar por nombre...">
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo</mat-label>
+          <mat-select formControlName="type" name="type" multiple>
+            <mat-option value="default">Todos</mat-option>
+            <mat-option value="MOVIE">Películas</mat-option>
+            <mat-option value="SERIES">Series</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Género</mat-label>
+          <mat-select formControlName="genre" name="genre" multiple>
+            <mat-option value="default">Todos</mat-option>
+            <mat-option *ngFor="let genre of genres" [value]="genre.id">{{ genre.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Calificación</mat-label>
+          <mat-select formControlName="score" name="score" multiple>
+            <mat-option value="default">Todas</mat-option>
+            <mat-option *ngFor="let score of scores" [value]="score" >{{ score }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button type="submit">Aplicar filtros</button>
         <button type="button" (click)="clearFilters()">Limpiar filtros</button>
       </form>
     </div>
     <div class="movie-grid">
       <div *ngFor="let movie of movies" class="movie-card">
         <div class="movie-info">
-          <h3>{{ movie.name }}</h3>
-          <p>{{ movie.type }} - {{ movie.score }}</p>
+          <h2>{{ movie.name }}</h2>
+          <p>Tipo - {{ movie.type }} </p>
+          <p>Visualizaciones - {{ movie.noViewers }}</p>
+          
         </div>
-        <button class="view-button">Ver</button>
+        <button class="view-button" (click)="openModal(movie)">Ver</button>
       </div>
     </div>
   </div>
+  <app-movie-details-component *ngIf="showModal" [movie]="selectedMovie" (close)="closeModal()"></app-movie-details-component>
+
   

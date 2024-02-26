@@ -1,0 +1,127 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  gap: 20px;
+  background-color: #222;
+  color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px; /* Espacio entre los elementos */
+}
+
+.close-button {
+  align-self: flex-end;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+}
+
+.youtube-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 20px;
+}
+
+.movie-details {
+  display: flex;
+  width: 100%;
+  justify-content: space-between; /* Separa el título y la información */
+  gap: 20px; 
+}
+
+.movie-title {
+  flex: 1; 
+  text-align: left;
+}
+
+.movie-info {
+  flex: 1; 
+  text-align: right; 
+  padding: 20px; 
+  background-color: #333; 
+  border-radius: 8px
+}
+
+.rating {
+  display: flex;
+  gap: 5px; 
+  margin-top: 10px; 
+}
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+
+.rating > .star {
+  font-size: 25px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.rating > .star:hover,
+.rating > .star:hover ~ .star {
+  color: #f0ad4e;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 20px;
+  color: #ffd700; 
+}
+
+.like-dislike-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.like-dislike-buttons button {
+  cursor: pointer;
+  background-color: #e50914;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+
+
+
+
+.global-info h3 {
+  margin-bottom: 10px; 
+  color: #f0ad4e; 
+}
+
+.rating > .star {
+  color: #ccc; 
+}
+
+.rating > .star.active,
+.rating > .star:hover,
+.rating > .star:hover ~ .star {
+  color: #f0ad4e; 
+}
+
+.star.active {
+  color: #f0ad4e; 
+}
+

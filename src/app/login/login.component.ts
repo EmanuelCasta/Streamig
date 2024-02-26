@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from '../auth/security/auth.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -9,23 +11,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
-  constructor(private http: HttpClient) { }
+  errorMessage: string = '';
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   login() {
-    const url = 'http://localhost:8081/apigateway/secure/login'
-    const body = { correo: this.email, password: this.password };
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    this.http.post(url, body, { headers: headers }).subscribe(
-      (response: any) => {
-        console.log(response);
-        localStorage.setItem('token', response.token);
+    this.authService.login(this.email, this.password).subscribe(
+      (response) => {
+        this.router.navigate(['/movie']);      
       },
       (error) => {
         console.error(error);
+        this.errorMessage = 'Error de inicio de sesión o token inválido';
       }
     );
 

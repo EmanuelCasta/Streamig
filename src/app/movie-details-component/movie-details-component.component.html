@@ -1,0 +1,35 @@
+<div class="modal-backdrop">
+  <div class="modal-content">
+    <iframe class="youtube-video" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+    <div class="movie-details">
+      <div class="movie-title">
+        <h2>{{ movie.name }}</h2>
+        <div class="rating">
+          <div class="rating">
+            <span class="star" (click)="rate(5)" [ngClass]="{'active': currentRating >= 5}">&#9733;</span>
+            <span class="star" (click)="rate(4)" [ngClass]="{'active': currentRating >= 4}">&#9733;</span>
+            <span class="star" (click)="rate(3)" [ngClass]="{'active': currentRating >= 3}">&#9733;</span>
+            <span class="star" (click)="rate(2)" [ngClass]="{'active': currentRating >= 2}">&#9733;</span>
+            <span class="star" (click)="rate(1)" [ngClass]="{'active': currentRating >= 1}">&#9733;</span>
+          </div>
+        </div>
+      </div>
+      <div class="movie-info">
+        <div class="global-info">
+          <h3>Información Global</h3>
+          <p><strong>Puntuación Global:</strong> 
+            <span *ngIf="movie.qualifiedPerson > 0">{{ movie.score / movie.qualifiedPerson }}</span>
+            <span *ngIf="movie.qualifiedPerson === 0">No ha sido puntuado aún</span>
+          </p>
+          <p><strong>Género:</strong> {{ movie.genreMovie }}</p>
+          <p><strong>Visualizaciones:</strong> {{ movie.noViewers }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="like-dislike-buttons">
+      <button class="like-button">Me gusta</button>
+      <button class="dislike-button">No me gusta</button>
+    </div>
+    <button class="close-button" (click)="closeModal()">Cerrar</button>
+  </div>
+</div>
